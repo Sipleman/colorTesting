@@ -14,7 +14,7 @@ class Wall(object):
         self.width = width
         self.height = height
         self._tk_init()
-        self.pixels = [[(0, 0, 1) for x in range(width)] for y in range(height)] #initialize tuple
+        self.pixels = [[(0, 0, 0) for x in range(width)] for y in range(height)] #initialize tuple
                                                                        #with 3 arguments:
                                                                        #hue, saturation and value(or lightning)
 
@@ -46,7 +46,6 @@ class Wall(object):
                 hue = "#%02x%02x%02x" % s
                 self.canvas.create_rectangle(x_0, y_0, x_1, y_1, fill=hue)
         self.canvas.update()
-        time.sleep(2)
 
     def clear(self):
         for i in range(len(self.pixels)):
@@ -67,3 +66,7 @@ class Wall(object):
         blue = int(float(blue) / (self.MAX_BLUE - self.MIN_BLUE) * 0xFF)
         return (red, green, blue)
 
+    def set_global_hue(self, value):
+        for i in range(self.width):
+            for j in range(self.height):
+                self.pixels[i][j] = (value, self.pixels[i][j][1], self.pixels[i][j][2])

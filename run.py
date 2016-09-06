@@ -17,7 +17,8 @@ if __name__ == "__main__":
 
     wall = Wall(args.width, args.height)
 
-    eff = effects.PaintInBlue(wall)
+    eff = effects.ValueTest(wall)
     eff.run()
+
 
 
